@@ -41,8 +41,4 @@ Connection closed by foreign host.
 
 h2. Discussion
 
-See also the <a href="/chapters/networking/basic-client.html">Basic Client recipe</a>.
-
-<!--
 See also the <a href="/chapters/networking/basic-client.html">Basic Client</a>, the <a href="/chapters/networking/bi-directional-server.html">Bi-Directional Server</a>, and the <a href="/chapters/networking/bi-directional-client.html">Bi-Directional Client recipes</a>.
--->

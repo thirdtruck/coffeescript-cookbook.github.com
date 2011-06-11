@@ -1,17 +1,17 @@
 ---
 layout: recipe
-title: Basic Client
+title: Bi-Directional Client
 chapter: Networking
 ---
 
 h2. Problem
 
-You want to access a service provided over the network.
+You want to access a service that provides a persistent connection over the network.
 
 
 h2. Solution
 
-Create a basic TCP client.
+Create a bi-directional TCP client.
 
 h3. Node.js
 
@@ -22,13 +22,19 @@ domain = 'localhost'
 port = 9001
 
 connection = net.createConnection port, domain
+connection.setNoDelay true
 
 connection.on 'connect', () ->
 	console.log "Opened connection to #{domain}:#{port}."
+	setTimeout((-> connection.write("Hello...", -> console.log "Data sent.")), 1000)
+	setTimeout((-> connection.write("World!", -> console.log "Data sent.")), 3000)
+	setTimeout((-> connection.write("quit", -> console.log "Data sent.")), 5000)
 
 connection.on 'data', (data) ->
 	console.log "Received: #{data}"
-	connection.end()
+
+connection.on 'end', (data) ->
+	process.exit()
 {% endhighlight %}
 
 h3. Example Usage
