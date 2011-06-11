@@ -1,0 +1,43 @@
+---
+layout: recipe
+title: Basic Server
+chapter: Networking
+---
+
+h2. Problem
+
+You want to provide a service over a network.
+
+
+h2. Solution
+
+Create a basic server.
+
+h3. Node.js
+
+{% highlight coffeescript %}
+net = require 'net'
+
+server = net.createServer (socket) ->
+	socket.write "Hello, World!\n"
+	socket.end()
+
+domain = 'localhost'
+port = 9001
+console.log "Listening to #{domain}:#{port}"
+server.listen port, domain
+{% endhighlight %}
+
+h3. Example Usage
+
+bc.
+$ telnet localhost 9001
+Connected to localhost.
+Escape character is '^]'.
+Hello, World!
+Connection closed by foreign host.
+
+
+h2. Discussion
+
+See also the <a href="/chapters/networking/basic-client.html">Basic Client recipe</a>, the <a href="/chapters/networking/bi-directional-server.html">Bi-Directional Server recipe</a>, and the <a href="/chapters/networking/bi-directional-client.html">Bi-Directional Client recipe</a>.
